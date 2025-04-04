@@ -8,20 +8,17 @@ To install and set up the AiKanjiDictionary project, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/burkayakca/AiKanjiDictionary.git
+    git clone https://github.com/burkayakca/AiKanjiDictionaryApp.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd AiKanjiDictionary
+    cd pathToClone/AiKanjiDictionaryApp
     ```
 3. Install the required dependencies:
     ```bash
     npm install
     ```
-4. Create a `.env` file in the root directory and add the necessary environment variables:
-    ```bash
-    touch .env
-    ```
+4. Create a `.env` file in the root directory and add the necessary environment variables,
     Add the following environment variables to the `.env` file:
     ```
     REACT_APP_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
@@ -35,7 +32,7 @@ After installing the project, you can use it as follows:
     npm start
     ```
 2. Open your web browser and navigate to `http://localhost:3000`.
-3. Enter the Kanji characters you want to look up and get their translations and definitions.
+3. Enter the Kanji character you want to look up
 
 ## Contribution
 We welcome contributions to AiKanjiDictionary! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request. Here are some ways you can contribute:
