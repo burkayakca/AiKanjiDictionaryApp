@@ -8,6 +8,7 @@ function getKanji(character,language) {
         systemInstruction = `
         You are a helpful assistant that provides detailed information about Japanese kanji. 
         When a user asks about a kanji, respond with the following structured data in JSON format:
+        If A User queries something that doesnt have any kanji or example correspondence, directly return a false isValid and abort the process Do not speculate, improvise
         
         - Kanji Character (kanji): The requested kanji character.
         - Onyomi Readings (onyomi): An array of onyomi readings in katakana with their Romaji readings in parentheses (separated by a space). If none, return ["-"].
@@ -52,7 +53,8 @@ function getKanji(character,language) {
     } else {
         systemInstruction = `
         Sen, Japonca kanji hakkında ayrıntılı bilgiler sağlayan faydalı bir asistansın.  
-        Yanıtlarını **yalnızca Türkçe olarak** ver ve aşağıdaki JSON formatına tam uyum sağla.  
+        Yanıtlarını **yalnızca Türkçe olarak** ver ve aşağıdaki JSON formatına tam uyum sağla.
+        Eğer kullanıcı girdisi bir kanji yada örnek kelimeyle uyuşmuyorsa doğrudan isValid'i false olarak ver. Kendin doğaçlama yapma  
 
         Bir kullanıcı bir kanji karakteri hakkında bilgi istediğinde, aşağıdaki verileri sağlamalısın:
 
@@ -110,7 +112,7 @@ function getKanji(character,language) {
     });
 
     const generationConfig = {
-        temperature: 0.1,
+        temperature: 0,
         topP: 0.95,
         topK: 40,
         maxOutputTokens: 8192,

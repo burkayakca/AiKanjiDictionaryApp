@@ -43,7 +43,7 @@ function App() {
             if (data.isValid) {
                 setJsonfile(data);
                 setErrorMessage(""); 
-            } else {
+            } else if (data.isValid == false) {
                 setJsonfile(null);
                 setErrorMessage(language === "en" ? "Invalid Query. Please try again with a valid query." : "Geçersiz Sorgu. Lütfen tekrar deneyiniz");
             }
