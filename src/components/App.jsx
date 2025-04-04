@@ -45,11 +45,11 @@ function App() {
                 setErrorMessage(""); 
             } else {
                 setJsonfile(null);
-                setErrorMessage("Invalid Query. Please try again with a valid query.");
+                setErrorMessage(language === "en" ? "Invalid Query. Please try again with a valid query." : "Geçersiz Sorgu. Lütfen tekrar deneyiniz");
             }
         } catch (error) {
             console.error('Error fetching the Kanji data:', error);
-            setErrorMessage("An error occurred while fetching the Kanji data. Please try again.");
+            setErrorMessage(language === "en" ? "An error occurred while fetching the Kanji data. Please try again." : "Bir hata meydana geldi. Lütfen tekrar deneyin.");
         } finally {
             setIsLoading(false); 
         }
@@ -58,13 +58,13 @@ function App() {
     return (
       <div className="main">
       <div className="main center-container">
-        <h2 className="np">{language == "en" ? "AI Kanji Dictionary" : "YZ Kanji Sözlüğü"}</h2>
+        <h2 className="np">{language === "en" ? "AI Kanji Dictionary" : "YZ Kanji Sözlüğü"}</h2>
         <input
         className="form-control-md np"
         type="text"
         value={inputKanji}
         onChange={(e) => setInputKanji(e.target.value)}
-        placeholder="Enter Kanji"
+        placeholder={language === "en" ? "Enter Kanji" : "Kanci giriniz"}
         />
         <button
         className="btn btn-primary btn-sm text-nowrap np"
@@ -73,7 +73,7 @@ function App() {
         disabled={isLoading}
         > {language === "en" ? 
           (isLoading ? "Loading..." : "Submit")
-          : (isLoading ? "Yükleniyor..." : "Sorgula")
+          : (isLoading ? "Yükleniyor..." : "Gönder")
           }
         </button>
 
@@ -90,7 +90,7 @@ function App() {
       </div>
 
       <dl className="dictionary">
-        {jsonfile ? createEntry(jsonfile, 0) : <p className="input-p">{language == "en" ? "Waiting for query / No Data" : "Sorgu bekleniyor / Veri bulunamadı."}</p>}
+        {jsonfile ? createEntry(jsonfile, 0) : <p className="input-p">{language === "en" ? "Waiting for query / No Data" : "Sorgu bekleniyor / Veri bulunamadı."}</p>}
       </dl>
       </div>
     );
