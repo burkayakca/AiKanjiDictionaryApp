@@ -1,0 +1,186 @@
+:root {
+    --light-bg: #f9f9f9;
+    --light-text: #222;
+    --light-table-bg: #fff;
+    --light-border: #ddd;
+
+    --dark-bg: #222;
+    --dark-text: white;
+    --dark-table-bg: #333;
+    --dark-border: #4CAF50;
+
+    --accent-green: #14A44D;
+    --accent-blue: #3B71CA;
+    --accent-yellow: #E4A11B;
+    --accent-color: #DC4C64;
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+
+    .main {
+        background-color: var(--light-bg);
+        margin: 5px;
+        border-radius: 10px;
+        padding: 10px
+    }
+
+
+    body {
+        background-color: var(--light-bg)
+    }
+
+    .input-p {
+        color: var(--light-text)
+    }
+
+    h2 {
+        color: var(--light-text);
+        margin : 10px;
+    }
+    
+    .kanji-container {
+        background-color: var(--light-bg);
+        color: var(--light-text);
+    }
+    .kanji-container h1 { color: var(--accent-color); }
+    .kanji-container table { background-color: var(--light-table-bg); color: var(--light-text); }
+    .kanji-container th { background: var(--accent-color); color: white; }
+    .kanji-container td { border-bottom: 1px solid var(--light-border); }
+
+        .kanji-input {
+        border: 2px solid var(--light-text);
+        color: var(--light-text);
+    }
+}
+
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+
+    .main {
+        background-color: var(--dark-bg);
+        margin: 5px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: var(--dark-text);
+        margin : 10px;
+    }
+
+    .input-p {
+        color: var(--dark-text)
+    }
+
+    .kanji-container {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+    }
+    .kanji-container h1 { color: var(--accent-color); }
+    .kanji-container table { background-color: var(--dark-table-bg); color: var(--dark-text); }
+    .kanji-container th { background: var(--accent-color); color: white; }
+    .kanji-container td { border-bottom: 1px solid var(--dark-border); }
+
+    .kanji-input {
+        border: 2px solid var(--dark-text);
+        color: var(--dark-text);
+    }
+}
+
+@media print {
+    .np,.emoji {
+        display:none;
+    }
+    
+    body {
+        color:black
+    }
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px; /* Optional: Limit the width */
+}
+
+.emoji {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-image: url(./components/bg.png)
+}
+
+.kanji-box {
+    font-size: 75px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: "Noto Serif JP", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.notoSans {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+  
+/* General Styling */
+
+.kanji-container {
+    padding: 15px;
+    border-radius: 10px;
+    font-family: "Noto Sans JP", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.kanji-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.kanji-container th, .kanji-container td {
+    padding: 12px;
+}
+
+.kanji-title {
+    text-align: center; 
+    font-size: 80px;
+}
+
+
+.kanji-input {
+    margin:15px;
+    padding: 10px;
+
+}
+
+.input-p {
+    font-size: 18px;
+}
+
+.kanji-p {
+    font-size:18px;
+    
+}
+
+.btn {
+    margin: 15px
+}
+
+.lang_btn {
+    margin: 3px
+}
