@@ -11,18 +11,24 @@ function getKanji(character,language) {
         If A User queries something that doesnt have any kanji or example correspondence, directly return a false isValid and abort the process Do not speculate, improvise
         
         - Kanji Character (kanji): The requested kanji character.
+        - Components (components): Provide the components of the ｇiven kanji. If the Kanji is a standalone one, provide the kanji itself For example if the user queries 国 Provide 囗 and 玉 or For 一 query, 一
         - Onyomi Readings (onyomi): An array of onyomi readings in katakana with their Romaji readings in parentheses (separated by a space). If none, return ["-"].
         - Kunyomi Readings (kunyomi): An array of kunyomi readings in hiragana with their Romaji readings in parentheses (separated by a space). If none, return ["-"].
         - Meaning (meaning): The English meaning of the kanji.
         - Validity Check (isValid): A boolean indicating whether the kanji is valid (true) or not (false).
         - Stroke Count (strokeNumber): The total number of strokes in the kanji.
-        - Example Words (examples): An array of words that include the kanji in compound form. Each entry includes:
+        - Example Words (examples): An array of words that include the kanji in compound form. Only provide words that include the given kanji. Each entry includes:
         - Word (word): The compound word containing the kanji.
         - Reading (reading): The word's reading in hiragana with its Romaji in parentheses (separated by a space).
         - Meaning (meaning): The English meaning of the word.
         `;
         properties = {
             kanji: { type: "string", description: "The requested kanji character." },
+            components: {
+                type: "array",
+                description: "Provide the components of the ｇiven kanji. If the Kanji is a standalone one, provide the kanji itself For example if the user queries 国 Provide 囗 and 玉 or For 一 query, 一",
+                items: {type: "string"},
+            },
             onyomi: {
                 type: "array",
                 description: "Onyomi readings in katakana with Romaji in parentheses (separated by a space). If none, return ['-'].",
@@ -38,7 +44,7 @@ function getKanji(character,language) {
             strokeNumber: { type: "integer", description: "Total number of strokes in the kanji." },
             examples: {
                 type: "array",
-                description: "Example compound words using the kanji.",
+                description: "Example compound words using the kanji. Only provide words that include the given kanji",
                 items: {
                     type: "object",
                     properties: {
@@ -59,12 +65,13 @@ function getKanji(character,language) {
         Bir kullanıcı bir kanji karakteri hakkında bilgi istediğinde, aşağıdaki verileri sağlamalısın:
 
         - **Kanji Karakteri (kanji):** İstenen kanji karakteri.  
+        - **Bileşenler (components):** Kanji'nin bileşenlerini varsa göster. yoksa kanjiyi tek başına göster. Mesela '国' kanjisi için 囗 ve 玉 gibi. Yada 一　için 一 gibi
         - **Onyomi Okunuşları (onyomi):** Onyomi okunuşlarının **katakana** yazımı ve **Romaji** okunuşları parantez içinde (araya boşluk koy). Eğer onyomi yoksa "-" döndür.  
         - **Kunyomi Okunuşları (kunyomi):** Kunyomi okunuşlarının **hiragana** yazımı ve **Romaji** okunuşları parantez içinde (araya boşluk koy). Eğer kunyomi yoksa "-" döndür.  
         - **Anlamı (meaning):** Kanji karakterinin **Türkçe anlamı**.  
         - **Geçerlilik Kontrolü (isValid):** Girilen kanjinin geçerli olup olmadığını belirten bir true veya false değeri.  
         - **Toplam Çizgi Sayısı (strokeNumber):** Kanjiyi yazmak için gereken toplam çizgi sayısı.  
-        - **Örnek Kelimeler (examples):** Kanjinin içinde geçtiği birleşik kelimeler listesi. Her kelime şu bilgileri içermelidir:  
+        - **Örnek Kelimeler (examples):** Kanjinin içinde geçtiği birleşik kelimeler listesi. Sadece verilen kanjinin geçtiği kelimeleri sağla. Her kelime şu bilgileri içermelidir:  
         - **Kelime (word):** Kanji içeren birleşik kelime.  
         - **Okunuş (reading):** Kelimenin **hiragana** yazımı ve **Romaji** okunuşu parantez içinde (araya boşluk koy).  
         - **Anlamı (meaning):** Kelimenin **Türkçe anlamı**.  
@@ -74,6 +81,11 @@ function getKanji(character,language) {
 
         properties = {
             kanji: { type: "string", description: "İstenen kanji karakteri." },
+            components: {
+                type: "array",
+                description: "Kanji'nin bileşenlerini varsa göster. yoksa kanjiyi tek başına göster. Mesela '国' kanjisi için 囗 ve 玉 gibi. Yada 一　için 一 gibi",
+                items: {type: "string"},
+            },
             onyomi: {
                 type: "array",
                 description: "Onyomi okunuşları katakana ile yazılır ve Romaji okunuşları parantez içinde verilir (araya boşluk koy). Eğer onyomi yoksa ['-'] döndür.",
@@ -89,7 +101,7 @@ function getKanji(character,language) {
             strokeNumber: { type: "integer", description: "Kanjiyi yazmak için gereken toplam çizgi sayısı." },
             examples: {
                 type: "array",
-                description: "Kanjinin içinde geçtiği birleşik kelimelerin listesi.",
+                description: "Kanjinin içinde geçtiği birleşik kelimelerin listesi. Sadece ama sadece sorguladığı kanjiyi barındıran örnek kelimeler ver",
                 items: {
                     type: "object",
                     properties: {
@@ -120,7 +132,7 @@ function getKanji(character,language) {
         responseSchema: {
             type: "object",
             properties: properties,
-            required: ["kanji", "onyomi", "kunyomi", "meaning", "isValid", "strokeNumber", "examples"],
+            required: ["kanji","onyomi", "kunyomi", "meaning", "isValid", "strokeNumber", "examples"],
         },
     };
     

@@ -28,6 +28,7 @@ function App() {
           meaning={jsonfile.meaning}
           kunyomi={jsonfile.kunyomi}
           onyomi={jsonfile.onyomi}
+          components={jsonfile.components}
           examples={jsonfile.examples}
           strokeNumber={jsonfile.strokeNumber}
           language = {language}
