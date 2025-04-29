@@ -9,8 +9,8 @@ import getKanji from '../genai/getKanji';
 function SubmitKanji() {
     const [enteredKanji, setEnteredKanji] = useState("");
     const [json, setJsonfile] = useState("");
-    const [isLoading, setIsLoading] = useState(false); // Fixed missing assignment
-    const [error, setError] = useState(""); // Fixed typo from "cosnt" to "const"
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(""); 
     const [language, setLanguage] = useState("en");
 
     const handleFetchKanji = async () => {
@@ -32,10 +32,9 @@ function SubmitKanji() {
             }
         } catch (error) {
             console.error('Error fetching the Kanji data:', error);
-            setError(language === "en" ? "An error occurred while fetching the Kanji data. Please try again." : "Bir hata meydana geldi. Lütfen tekrar deneyin.");
             Alert.alert(
                 language === "en" ? "Error" : "Hata",
-                error,
+                String(error),
                 [{ text: language === "en" ? "OK" : "Tamam", style: "destructive" }]
             );
         } finally {

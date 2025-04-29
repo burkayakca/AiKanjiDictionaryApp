@@ -14,7 +14,7 @@ function getKanji(character, language) {
         properties = Prompts.tr.properties;
     };
 
-    const genAI = new GoogleGenerativeAI(REACT_APP_GEMINI_API_KEY); // Use environment variable
+    const genAI = new GoogleGenerativeAI(REACT_APP_GEMINI_API_KEY); 
     const model = genAI.getGenerativeModel({
         model: "gemini-2.0-flash",
         systemInstruction: systemInstruction,
