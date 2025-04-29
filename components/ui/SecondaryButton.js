@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import colors from './CustomColors';
+import Prompts from '../genai/Prompts';
 
-function SecondaryButton({onPress,children}) {
+function SecondaryButton({disabled , onPress,children}) {
 
     return (
         <View style={styles.buttonOuterContainer}>
@@ -10,6 +11,7 @@ function SecondaryButton({onPress,children}) {
                     pressed ? [styles.buttonInnerContainer, styles.pressed]: styles.buttonInnerContainer }
                     onPress={onPress} 
                     android_ripple={{color: colors.bs.dangerDark}}
+                    disabled={disabled}
                     >
                         <Text style={styles.buttonText}>{children}</Text>
                 </Pressable>

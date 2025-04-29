@@ -10,7 +10,6 @@ function SubmitKanji() {
     const [enteredKanji, setEnteredKanji] = useState("");
     const [json, setJsonfile] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(""); 
     const [language, setLanguage] = useState("en");
 
     const handleFetchKanji = async () => {
@@ -20,13 +19,11 @@ function SubmitKanji() {
             console.log('Fetched data:', data); 
             if (data.isValid) {
                 setJsonfile(data);
-                setError(""); 
             } else if (data.isValid === false) {
-                setJsonfile(null);
-                setError(language === "en" ? "Invalid Query. Please try again with a valid query." : "Geçersiz Sorgu. Lütfen tekrar deneyiniz");
+                setJsonfile("");
                 Alert.alert(
                     language === "en" ? "Error" : "Hata",
-                    error,
+                    language === "en" ? "Invalid Query. Please try again with a valid query." : "Geçersiz Sorgu. Lütfen tekrar deneyiniz",
                     [{ text: language === "en" ? "OK" : "Tamam", style: "destructive" }]
                 );
             }
@@ -77,7 +74,7 @@ function SubmitKanji() {
                                     (isLoading ? "Loading..." : "Submit")
                                     : (isLoading ? "Yükleniyor..." : "Gönder")}
                                 </PrimaryButton>
-                                <SecondaryButton onPress={languageSetting}>{language === "en" ? "Türkçe" : "English"}</SecondaryButton>
+                                <SecondaryButton disabled={isLoading} onPress={languageSetting}>{language === "en" ? "Türkçe" : "English"}</SecondaryButton>
                             </View>
                         </View>}
                     </View>
