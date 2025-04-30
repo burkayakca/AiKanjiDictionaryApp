@@ -105,7 +105,14 @@
     justify-content: center;
     margin: 0 auto;
     width: 100%;
-    max-width: 600px; /* Optional: Limit the width */
+    max-width: 600px; 
+}
+
+.close-svg {
+  transition: transform 0.2s;
+  cursor: pointer;
+  fill: var(--accent-color);
+  margin: 16px;
 }
 
 .emoji {
