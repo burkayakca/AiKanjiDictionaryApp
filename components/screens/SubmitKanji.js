@@ -5,6 +5,7 @@ import SecondaryButton from "../ui/SecondaryButton";
 import colors from '../ui/CustomColors';
 import Title from '../ui/Title';
 import getKanji from '../genai/getKanji';
+import XButton from '../ui/XButton';
 
 function SubmitKanji() {
     const [enteredKanji, setEnteredKanji] = useState("");
@@ -16,7 +17,7 @@ function SubmitKanji() {
         try {
             setIsLoading(true);
             const data = await getKanji(enteredKanji, language);
-            console.log('Fetched data:', data); 
+            console.log('Fetched data:', data);
             if (data.isValid) {
                 setJsonfile(data);
             } else if (data.isValid === false) {
@@ -35,7 +36,7 @@ function SubmitKanji() {
                 [{ text: language === "en" ? "OK" : "Tamam", style: "destructive" }]
             );
         } finally {
-            setIsLoading(false); 
+            setIsLoading(false);
         }
     };
 
@@ -52,52 +53,54 @@ function SubmitKanji() {
         }
     }
 
+
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.main}>
-                <View style={styles.inputContainer}>
+
+                <View style={[styles.inputContainer, { alignItems: json ? "left" : "center" }]}>
                     <View>
-                        {json 
-                        ? 
-                        <View>
-                            <PrimaryButton onPress={resetKanji}>New Query</PrimaryButton>
-                        </View> 
-                        : 
-                        <View>
+                        {json
+                            ?
                             <View>
-                                <Title>Enter A Kanji</Title>
-                                <TextInput textAlign={"center"} style={styles.kanjiInput} onChangeText={setEnteredKanji} value={enteredKanji} />
+                                <XButton onPress={resetKanji} />
                             </View>
-                            <View style={styles.buttonsContainer}>
-                                <PrimaryButton onPress={handleFetchKanji}>
-                                    {language === "en" ?
-                                    (isLoading ? "Loading..." : "Submit")
-                                    : (isLoading ? "Yükleniyor..." : "Gönder")}
-                                </PrimaryButton>
-                                <SecondaryButton disabled={isLoading} onPress={languageSetting}>{language === "en" ? "Türkçe" : "English"}</SecondaryButton>
-                            </View>
-                        </View>}
+                            :
+                            <View>
+                                <View>
+                                    <Title>Enter A Kanji</Title>
+                                    <TextInput textAlign={"center"} style={styles.kanjiInput} onChangeText={setEnteredKanji} value={enteredKanji} />
+                                </View>
+                                <View style={styles.buttonsContainer}>
+                                    <PrimaryButton onPress={handleFetchKanji}>
+                                        {language === "en" ?
+                                            (isLoading ? "Loading..." : "Submit")
+                                            : (isLoading ? "Yükleniyor..." : "Gönder")}
+                                    </PrimaryButton>
+                                    <SecondaryButton disabled={isLoading} onPress={languageSetting}>{language === "en" ? "Türkçe" : "English"}</SecondaryButton>
+                                </View>
+                            </View>}
                     </View>
                     <ScrollView style={{ maxHeight: 600, minWidth: 300, maxWidth: "100%" }}>
                         {json && (
                             <View>
                                 <View>
-                                <Text style={styles.kanji}>{json.kanji}</Text>
-                                <Text style={styles.kanjiText}>
-                                    {language === "en" ? "Meaning(s):" : "Anlam(lar)ı:"} {json.meaning}
-                                </Text>
-                                <Text style={styles.kanjiText}>
-                                    {language === "en" ? "Onyomi:" : "Onyomi:"} {json.onyomi.join(", ")}
-                                </Text>
-                                <Text style={styles.kanjiText}>
-                                    {language === "en" ? "Kunyomi:" : "Kunyomi:"} {json.kunyomi.join(", ")}
-                                </Text>
-                                <Text style={styles.kanjiText}>
-                                    {language === "en" ? "Stroke Count:" : "Çizgi Sayısı:"} {json.strokeNumber}
-                                </Text>
-                                <Text style={styles.kanjiText}>
-                                    {language === "en" ? "Component(s):" : "Bileşen(ler)i:"} {json.components.join(", ")}
-                                </Text>
+                                    <Text style={styles.kanji}>{json.kanji}</Text>
+                                    <Text style={styles.kanjiText}>
+                                        <Text style={styles.boldText}>{language === "en" ? "Meaning(s):" : "Anlam(lar)ı:"}</Text> {json.meaning}
+                                    </Text>
+                                    <Text style={styles.kanjiText}>
+                                        <Text style={styles.boldText}>{language === "en" ? "Onyomi:" : "Onyomi:"}</Text> {json.onyomi.join(", ")}
+                                    </Text>
+                                    <Text style={styles.kanjiText}>
+                                        <Text style={styles.boldText}>{language === "en" ? "Kunyomi:" : "Kunyomi:"}</Text> {json.kunyomi.join(", ")}
+                                    </Text>
+                                    <Text style={styles.kanjiText}>
+                                        <Text style={styles.boldText}>{language === "en" ? "Stroke Count:" : "Çizgi Sayısı:"}</Text> {json.strokeNumber}
+                                    </Text>
+                                    <Text style={styles.kanjiText}>
+                                        <Text style={styles.boldText}>{language === "en" ? "Component(s):" : "Bileşen(ler)i:"}</Text> {json.components.join(", ")}
+                                    </Text>
                                 </View>
                                 <View style={styles.table}>
                                     <View style={styles.tableRowHeader}>
@@ -105,17 +108,17 @@ function SubmitKanji() {
                                         <Text style={styles.tableHeader}>Okunuş</Text>
                                         <Text style={styles.tableHeader}>Anlam</Text>
                                     </View>
-                                    
+
                                     {json.examples.map((row, idx) => (
                                         <View style={styles.tableRow} key={idx}>
-                                            <Text style={styles.tableCell}>{row.word}</Text>
+                                            <Text style={styles.tableCellKanji}>{row.word}</Text>
                                             <Text style={styles.tableCell}>{row.reading}</Text>
                                             <Text style={styles.tableCell}>{row.meaning}</Text>
                                         </View>
                                     ))}
                                 </View>
                             </View>
-                            
+
                         )}
                     </ScrollView>
                 </View>
@@ -128,13 +131,17 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
     },
-    kanji : { 
+    boldText: {
+        fontWeight: "bold"
+    },
+    kanji: {
         fontSize: 50,
-        color: colors.bs.info, 
-        textAlign: "center" },
-    kanjiText :  { 
+        color: colors.bs.info,
+        textAlign: "center"
+    },
+    kanjiText: {
         fontSize: 18,
-         marginVertical: 5 
+        marginVertical: 5
     },
     kanjiInput: {
         borderBottomWidth: 2,
@@ -148,13 +155,12 @@ const styles = StyleSheet.create({
         height: 60
     },
     inputContainer: {
-        alignItems: "center",
         marginTop: 100,
         marginHorizontal: 24,
         padding: 16,
         backgroundColor: colors.bs.white,
         borderRadius: 8,
-        elevation: 8,  
+        elevation: 8,
         shadowColor: "black",
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
@@ -162,7 +168,8 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         flexDirection: "row",
-        marginBottom: 25
+        justifyContent: "center",
+        marginVertical: 10
     },
     table: {
         marginTop: 24,
@@ -191,10 +198,16 @@ const styles = StyleSheet.create({
     },
     tableCell: {
         flex: 1,
-        fontSize: 16,
+        fontSize: 18,
         padding: 10,
         textAlign: "center",
     },
+    tableCellKanji: {
+        flex: 1,
+        fontSize: 18,
+        padding: 10,
+        textAlign: "center",
+    }
 });
 
 export default SubmitKanji;
