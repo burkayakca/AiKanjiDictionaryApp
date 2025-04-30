@@ -6,12 +6,21 @@ import colors from '../ui/CustomColors';
 import Title from '../ui/Title';
 import getKanji from '../genai/getKanji';
 import XButton from '../ui/XButton';
+import { useFonts } from 'expo-font';
+
 
 function SubmitKanji() {
     const [enteredKanji, setEnteredKanji] = useState("");
     const [json, setJsonfile] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [language, setLanguage] = useState("en");
+
+    useFonts({
+        'notoSerifJP': require('../../assets/fonts/notoSerifJP.ttf'),
+        'notoSansJP': require('../../assets/fonts/notoSansJP.ttf'),
+        "notoSansRegular": require('../../assets/fonts/notoSans-Regular.ttf'),
+        "notoSansBold": require('../../assets/fonts/notoSans-Bold.ttf'),
+    });
 
     const handleFetchKanji = async () => {
         try {
@@ -53,7 +62,6 @@ function SubmitKanji() {
         }
     }
 
-
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.main}>
@@ -68,7 +76,7 @@ function SubmitKanji() {
                             :
                             <View>
                                 <View>
-                                    <Title>Enter A Kanji</Title>
+                                    <Title>{language == "en" ? "Enter A Kanji" : "Kanci Giriniz"}</Title>
                                     <TextInput textAlign={"center"} style={styles.kanjiInput} onChangeText={setEnteredKanji} value={enteredKanji} />
                                 </View>
                                 <View style={styles.buttonsContainer}>
@@ -132,16 +140,20 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     boldText: {
-        fontWeight: "bold"
+        fontFamily: "notoSansBold"
     },
     kanji: {
         fontSize: 50,
         color: colors.bs.info,
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "notoSerifJP",
+        padding: 1,
+        fontWeight: 500
     },
     kanjiText: {
         fontSize: 18,
-        marginVertical: 5
+        marginVertical:2,
+        fontFamily: "notoSansRegular"
     },
     kanjiInput: {
         borderBottomWidth: 2,
@@ -171,8 +183,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginVertical: 10
     },
+    infoContainer : {
+        maxHeight: 600,
+        minWidth: 300, 
+        maxWidth: "100%",
+    },
     table: {
-        marginTop: 24,
+        marginTop: 16,
         borderWidth: 1,
         borderColor: "#222",
         borderRadius: 6,
@@ -180,13 +197,13 @@ const styles = StyleSheet.create({
     },
     tableRowHeader: {
         flexDirection: "row",
-        backgroundColor: "#e0556a",
+        backgroundColor: colors.bs.info,
     },
     tableHeader: {
         flex: 1,
         color: "#fff",
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 16,
         padding: 10,
         textAlign: "center",
     },
@@ -198,15 +215,18 @@ const styles = StyleSheet.create({
     },
     tableCell: {
         flex: 1,
-        fontSize: 18,
+        fontSize: 16,
         padding: 10,
         textAlign: "center",
+        fontFamily: "notoSansRegular" 
     },
     tableCellKanji: {
         flex: 1,
-        fontSize: 18,
-        padding: 10,
+        fontSize: 24,
+        padding: 5,
         textAlign: "center",
+        fontFamily: "notoSerifJP"
+
     }
 });
 
