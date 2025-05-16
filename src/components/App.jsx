@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Entry from './Entry'; 
 import getKanji from "./getKanji.jsx";
-import Loader from "./loader"
 import XButton from "./XButton.jsx";
 
- 
 function App() {
     const [jsonfile, setJsonfile] = useState(null);
     const [inputKanji, setInputKanji] = useState("");
@@ -52,11 +50,11 @@ function App() {
             } else if (data.isValid == false) {
                 setJsonfile(null);
                 setErrorMessage(language === "en" ? "Invalid Query. Please try again with a valid query." : "Geçersiz Sorgu. Lütfen tekrar deneyiniz");
+                alert(errorMessage)
             }
         } catch (error) {
-            alert(error);
+            alert(error)
             console.error('Error fetching the Kanji data:', error);
-            setErrorMessage(language === "en" ? "An error occurred while fetching the Kanji data. Please try again." : "Bir hata meydana geldi. Lütfen tekrar deneyin.");
         } finally {
             setIsLoading(false); 
         }
@@ -65,10 +63,11 @@ function App() {
     return (
       <div className="main">
       {jsonfile 
-          ? <XButton
+          ? 
+          <XButton
             onClick={resetKanji}
             className={"close-svg"}
-            />
+          />
           : <div className=" input center-container">
           <h2 className="np">{language === "en" ? "AI Kanji Dictionary" : "YZ Kanji Sözlüğü"}</h2>
           <input
@@ -78,27 +77,27 @@ function App() {
           onChange={(e) => setInputKanji(e.target.value)}
           placeholder={language === "en" ? "Enter Kanji" : "Kanci giriniz"}
           />
-          <button
-          className="btn btn-primary btn-sm text-nowrap np"
-          type="submit"
-          onClick={handleFetchKanji}
-          disabled={isLoading}
-          > {language === "en" ? 
-            (isLoading ? "Loading..." : "Submit")
-            : (isLoading ? "Yükleniyor..." : "Gönder")
-            }
-          </button>
+          <div>
+            <button
+              className="btn btn-primary btn-sm text-nowrap np"
+              type="submit"
+              onClick={handleFetchKanji}
+              disabled={isLoading}
+              > {language === "en" ? 
+                (isLoading ? "Loading..." : "Submit")
+                : (isLoading ? "Yükleniyor..." : "Gönder")
+                }
+            </button>
+            <button
+              className="btn btn-danger btn-sm text-nowrap np lang_btn"
+              type="submit"
+              onClick={languageSetting}
+              disabled={isLoading || jsonfile}
+              >
+              {language === "en" ? "Türkçe" : "English"}
+            </button>
+          </div>
 
-          <button
-          className="btn btn-danger btn-sm text-nowrap np lang_btn"
-          type="submit"
-          onClick={languageSetting}
-          disabled={isLoading || jsonfile}
-          >
-          {language === "en" ? "Türkçe" : "English"}
-          </button>
-
-          {isLoading && <Loader />}
         </div>}
 
 

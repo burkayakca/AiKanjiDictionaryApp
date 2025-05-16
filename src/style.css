@@ -60,8 +60,6 @@
 
     .main {
         background-color: var(--dark-bg);
-        margin: 5px;
-        border-radius: 10px;
     }
 
     h2 {
@@ -98,12 +96,26 @@
     }
 }
 
+h2 {
+    margin : 10px;
+}
+
+.main {
+    margin: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    min-width: 80%;
+    width: 100%;
+    max-width: 600px;
+}
+
 .center-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    min-width: 80%;
     width: 100%;
     max-width: 600px; 
 }
