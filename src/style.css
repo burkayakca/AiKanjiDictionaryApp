@@ -161,7 +161,6 @@ body{
 .kanji-box {
     font-size: 75px;
     text-align: center;
-    padding: 10px;
     margin-bottom: 10px;
     font-family: "Noto Serif JP", serif;
     font-optical-sizing: auto;
@@ -179,7 +178,8 @@ body{
 /* General Styling */
 
 .kanji-container {
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 10px;
     font-family: "Noto Sans JP", serif;
     font-optical-sizing: auto;
