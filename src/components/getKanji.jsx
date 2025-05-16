@@ -13,8 +13,7 @@ function getKanji(character,language) {
         properties = Prompts.tr.properties;
     };
     
-
-    const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY 
+    const GEMINI_API_KEY = localStorage.getItem("GEMINI_API_KEY")
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({
         model: "gemini-2.0-flash",

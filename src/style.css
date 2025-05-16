@@ -20,9 +20,6 @@
 
     .main {
         background-color: var(--light-bg);
-        margin: 5px;
-        border-radius: 10px;
-        padding: 10px
     }
 
 
@@ -51,6 +48,10 @@
         .kanji-input {
         border: 2px solid var(--light-text);
         color: var(--light-text);
+    }
+
+    .settings-svg {
+        fill: var(--light-text);
     }
 }
 
@@ -84,6 +85,10 @@
         border: 2px solid var(--dark-text);
         color: var(--dark-text);
     }
+
+    .settings-svg {
+        fill: var(--dark-text);
+    }
 }
 
 @media print {
@@ -96,28 +101,36 @@
     }
 }
 
+body {
+    padding: 15px;
+}
+
 h2 {
     margin : 10px;
 }
 
 .main {
-    margin: 5px;
-    border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 15px;
     min-width: 80%;
-    width: 100%;
     max-width: 600px;
+    border: solid black 2px;
 }
 
-.center-container {
+.input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
     min-width: 80%;
-    width: 100%;
     max-width: 600px; 
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+settings {
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .close-svg {
@@ -125,6 +138,12 @@ h2 {
   cursor: pointer;
   fill: var(--accent-color);
   margin: 16px;
+}
+
+.settings-svg {
+  transition: transform 0.2s;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .emoji {

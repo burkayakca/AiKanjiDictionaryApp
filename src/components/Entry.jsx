@@ -7,7 +7,7 @@ function Entry({ kanji, components, meaning, kunyomi, onyomi, examples, strokeNu
     }
 
     return (
-        <div className="main container-md kanji-container noto-sans-jp">
+        <div className="container-md kanji-container noto-sans-jp">
                     <div className='kanji-info col'>
                         <h1 className="kanji-box">{kanji}</h1>
                             <p className='kanji-p notoSans'><strong>{language == "en" ? "Meaning(s):" : "Anlam(lar)ı:"}</strong>　{meaning}</p> 
