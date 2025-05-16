@@ -10,8 +10,8 @@ function App() {
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false); 
     const [language, setLanguage] = useState("en")
-    const [settings, setSettings] = useState(false)
-    const [apikey, setApikey] = useState("")
+    const [isSettingsOpen, setSettings] = useState(false)
+    const [apikeyInput, setApikeyInput] = useState("")
     
     function languageSetting() {
       if (language == "en") {
@@ -47,9 +47,8 @@ function App() {
     }
 
     function saveApikey () {
-      localStorage.setItem('GEMINI_API_KEY', apikey)
-      console.log(apikey)
-      alert(language === "en" ? "API Anahtarı Kaydedildi" : "A")
+      localStorage.setItem('GEMINI_API_KEY', apikeyInput)
+      alert(language === "en" ? "API Key saved to Local Storage." : "API Anahtarı Tarayıcı hafızasına kaydedildi.")
       SettingsClose()
     }
 
@@ -80,14 +79,14 @@ function App() {
 
     return (
       <div className="main">
-      {settings ? (
+      {isSettingsOpen ? (
         <div className="input-container settings">
           <h2>{language == "en" ? "Settings" : "Ayarlar"}</h2>
           <input
             className="form-control-md"
             type="text"
-            value={apikey}
-            onChange={(e) => setApikey(e.target.value)}
+            value={apikeyInput}
+            onChange={(e) => setApikeyInput(e.target.value)}
             placeholder={language === "en" ? "Enter Gemini API Key" : "Gemini API Anahtarı giriniz"}
             />
             <div>
