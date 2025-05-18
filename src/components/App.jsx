@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Entry from './Entry';
-import getKanji from "./getKanji.jsx";
-import XButton from "./XButton.jsx";
-import SButton from "./SButton.jsx";
-import VerifyApiKey from "./VerifyApiKey.jsx";
+import Entry from './ui/Entry.jsx';
+import getKanji from "./api/getKanji.jsx";
+import XButton from "./ui/XButton.jsx";
+import SButton from "./ui/SButton.jsx";
+import VerifyApiKey from "./api/VerifyApiKey.jsx";
 
 function App() {
   const [jsonfile, setJsonfile] = useState(null);

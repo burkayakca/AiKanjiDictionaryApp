@@ -155,7 +155,7 @@ settings {
 body{
     display: flex;
     justify-content: center;
-    background-image: url(./components/bg.png)
+    background-image: url(./bg.png)
 }
 
 .kanji-box {
