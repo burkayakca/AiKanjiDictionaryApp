@@ -3,6 +3,7 @@ import Entry from './Entry';
 import getKanji from "./getKanji.jsx";
 import XButton from "./XButton.jsx";
 import SButton from "./SButton.jsx";
+import VerifyApiKey from "./VerifyApiKey.jsx";
 
 function App() {
   const [jsonfile, setJsonfile] = useState(null);
@@ -19,7 +20,6 @@ function App() {
     } else {
       setLanguage("en")
     }
-    console.log(language)
   }
 
   function createEntry(jsonfile, index) {
@@ -46,10 +46,18 @@ function App() {
     setSettings(false)
   }
 
-  function saveApikey() {
-    localStorage.setItem('GEMINI_API_KEY', apikeyInput)
-    alert(language === "en" ? "API Key saved to Local Storage." : "API Anahtarı Tarayıcı hafızasına kaydedildi.")
-    SettingsClose()
+  async function saveApikey() {
+    const apiVerification = await VerifyApiKey(apikeyInput)
+    console.log(apiVerification)
+    if (apiVerification == true) {
+      localStorage.setItem('GEMINI_API_KEY', apikeyInput)
+      alert(language === "en" ? "API Key verified and saved to Local Storage." : "API Anahtarı Tarayıcı hafızasına kaydedildi.")
+      setApikeyInput("")
+      SettingsClose() 
+    }  else {
+      alert(language == "en" ? "API Key could not be verified. Please re-enter your API Key or try again later" : "API Anahtarı doğrulanamadı. Lütfen Anahtarınızı tekrar giriniz yada daha sonra tekrar deneyiniz. ")
+      setApikeyInput("")
+    }
   }
 
   function resetKanji() {
@@ -59,7 +67,7 @@ function App() {
   const handleFetchKanji = async () => {
     setIsLoading(true);
     if (!localStorage.getItem("GEMINI_API_KEY")) {
-      alert(language == "en" ? "Please set a Gemini API Key from the settings section" : "API Anahtarı bulunamadı. Lütfen Ayarlar kısmından Gemini API Anahtarı tanımlayınız");
+      alert(language == "en" ? "API Key could not be found. Please set a Gemini API Key from the settings section" : "API Anahtarı bulunamadı. Lütfen Ayarlar kısmından Gemini API Anahtarı tanımlayınız");
       setIsLoading(false);
     } else {
       try {
@@ -99,7 +107,11 @@ function App() {
               className="btn btn-primary btn-sm text-nowrap"
               type="submit"
               onClick={saveApikey}
-            > {language === "en" ? "Save Key" : "Anahtarı Kaydet"}
+              disabled={isLoading}
+            > {language === "en" ?
+              (isLoading ? "Verifying Key..." : "Verify & Save")
+              : (isLoading ? "Doğrulanıyor" : "Doğrula & Kaydet")
+              }
             </button>
             <button
               className="btn btn-danger btn-sm text-nowrap lang_btn"
