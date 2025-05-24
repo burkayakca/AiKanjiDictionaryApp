@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Text } from "react";
 import Entry from './ui/Entry.jsx';
 import getKanji from "./api/getKanji.jsx";
 import XButton from "./ui/XButton.jsx";
@@ -97,7 +97,7 @@ function App() {
           <h2>{language == "en" ? "Settings" : "Ayarlar"}</h2>
           <input
             className="form-control-md"
-            type="text"
+            type="password"
             value={apikeyInput}
             onChange={(e) => setApikeyInput(e.target.value)}
             placeholder={language === "en" ? "Enter Gemini API Key" : "Gemini API Anahtarı giriniz"}
@@ -121,6 +121,9 @@ function App() {
               {language === "en" ? "Cancel" : "İptal"}
             </button>
           </div>
+          <p className="input-p">{language === "en" 
+          ? <>Your API Key will be stored <br />at your Local Storage.</>
+          : <>API Anahtarınız tarayıcınızın hafızasına <br /> (Local Storage)  kaydedilecektir.</>}</p>
         </div>
       ) : (
         <>
