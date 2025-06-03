@@ -1,5 +1,6 @@
 # AiKanjiDictionary
-[Live Demo](https://burkayakca.github.io/AiKanjiDictionaryApp/)
+[Live Demo](https://burkayakca.github.io/AiKanjiDictionaryApp/) 
+(Gemini API [Key](http://aistudio.google.com) needed.)
 ## Description
 AiKanjiDictionary is a project aimed at providing an AI-powered (Gemini) dictionary for Kanji characters. It leverages machine learning and natural language processing to offer accurate and efficient Kanji meanings and readings along with example words created with the Kanji.
 
