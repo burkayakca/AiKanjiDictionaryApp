@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AiKanjiDictionary/static/css/main.a4f3c294.css",
+    "main.js": "/AiKanjiDictionary/static/js/main.29f0113e.js",
+    "index.html": "/AiKanjiDictionary/index.html",
+    "main.a4f3c294.css.map": "/AiKanjiDictionary/static/css/main.a4f3c294.css.map",
+    "main.29f0113e.js.map": "/AiKanjiDictionary/static/js/main.29f0113e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4f3c294.css",
+    "static/js/main.29f0113e.js"
+  ]
+}
