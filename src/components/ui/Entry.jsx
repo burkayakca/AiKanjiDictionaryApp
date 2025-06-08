@@ -20,6 +20,7 @@ function Entry({ kanji, components, meaning, kunyomi, onyomi, examples, strokeNu
           height: 120,
           padding: 5,
           strokeColor: "#DC4C64",
+          showOutline: true,
           onLoadCharDataError() {
             setIsSupported(false); 
           },

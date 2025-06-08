@@ -18,7 +18,7 @@
 /* Light Mode */
 @media (prefers-color-scheme: light) {
 
-    .settings-footer, a, .input-p, .kanji-container, .kanji-container table, h2, .kanji-p {
+    .settings-footer p, a, .input-p, .kanji-container, .kanji-container table, h2, .kanji-p {
         color: var(--light-text);
     }
 
