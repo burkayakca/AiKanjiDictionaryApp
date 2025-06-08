@@ -41,3 +41,5 @@ We welcome contributions to AiKanjiDictionary! If you have any ideas, suggestion
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+Stroke Animations are provided by © 2018 Hanzi Writer 
+

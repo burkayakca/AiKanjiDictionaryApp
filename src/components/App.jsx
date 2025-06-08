@@ -53,8 +53,8 @@ function App() {
       localStorage.setItem('GEMINI_API_KEY', apikeyInput)
       alert(language === "en" ? "API Key verified and saved to Local Storage." : "API Anahtarı Tarayıcı hafızasına kaydedildi.")
       setApikeyInput("")
-      SettingsClose() 
-    }  else {
+      SettingsClose()
+    } else {
       alert(language == "en" ? "API Key could not be verified. Please re-enter your API Key or try again later" : "API Anahtarı doğrulanamadı. Lütfen Anahtarınızı tekrar giriniz yada daha sonra tekrar deneyiniz. ")
       setApikeyInput("")
     }
@@ -121,9 +121,11 @@ function App() {
               {language === "en" ? "Cancel" : "İptal"}
             </button>
           </div>
-          <p className="input-p">{language === "en" 
-          ? <>Your API Key will be stored <br />at your Local Storage.</>
-          : <>API Anahtarınız tarayıcınızın hafızasına <br /> (Local Storage)  kaydedilecektir.</>}</p>
+          <div className="input-p">
+            <p >{language === "en"
+              ? <>Your API Key will be stored <br /> at your Local Storage.</>
+              : <>API Anahtarınız tarayıcınızın hafızasına <br /> (Local Storage)  kaydedilecektir.</>}</p>
+          </div>
         </div>
       ) : (
         <>
@@ -166,7 +168,9 @@ function App() {
                   onClick={SettingsOpen}
                 />
               </div>
-
+              <div className="settings-footer">
+                <p>© 2025 <a href="https://www.github.com/burkayakca/AiKanjiDictionaryApp">burkayakca</a>  / Licensed under MIT <br />Stroke Animations: © 2018 <a href="https://www.hanziwriter.org">Hanzi Writer</a></p>
+              </div>
             </div>}
           {jsonfile &&
             <dl className="dictionary">

@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "homepage": "https://burkayakca.github.io/AiKanjiDictionaryApp",
   "scripts": {
     "test1": "echo \"Error: no test specified\" && exit 1",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
   "description": "",
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
+    "hanzi-writer": "^3.7.2",
     "json": "^11.0.0",
     "path": "^0.12.7",
     "react-dom": "^19.0.0",
@@ -27,5 +31,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }

@@ -18,36 +18,21 @@
 /* Light Mode */
 @media (prefers-color-scheme: light) {
 
-    .main {
+    .settings-footer, a, .input-p, .kanji-container, .kanji-container table, h2, .kanji-p {
+        color: var(--light-text);
+    }
+
+    .main, body, .kanji-container {
         background-color: var(--light-bg);
     }
 
-
-    body {
-        background-color: var(--light-bg)
-    }
-
-    .input-p {
-        color: var(--light-text)
-    }
-
-    h2 {
-        color: var(--light-text);
-        margin : 10px;
-    }
-    
-    .kanji-container {
-        background-color: var(--light-bg);
-        color: var(--light-text);
-    }
     .kanji-container h1 { color: var(--accent-color); }
-    .kanji-container table { background-color: var(--light-table-bg); color: var(--light-text); }
+    .kanji-container table { background-color: var(--light-table-bg); }
     .kanji-container th { background: var(--accent-color); color: white; }
     .kanji-container td { border-bottom: 1px solid var(--light-border); }
 
-        .kanji-input {
+    .kanji-input {
         border: 2px solid var(--light-text);
-        color: var(--light-text);
     }
 
     .settings-svg {
@@ -59,25 +44,17 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
 
-    .main {
+    .settings-footer, a, .input-p, .kanji-container, .kanji-container table, h2,.kanji-p {
+        color: var(--dark-text);
+    }
+
+    .main, .kanji-container {
         background-color: var(--dark-bg);
     }
 
-    h2 {
-        color: var(--dark-text);
-        margin : 10px;
-    }
 
-    .input-p {
-        color: var(--dark-text)
-    }
-
-    .kanji-container {
-        background-color: var(--dark-bg);
-        color: var(--dark-text);
-    }
     .kanji-container h1 { color: var(--accent-color); }
-    .kanji-container table { background-color: var(--dark-table-bg); color: var(--dark-text); }
+    .kanji-container table { background-color: var(--dark-table-bg); }
     .kanji-container th { background: var(--accent-color); color: white; }
     .kanji-container td { border-bottom: 1px solid var(--dark-border); }
 
@@ -160,9 +137,7 @@ body{
 }
 
 .kanji-box {
-    font-size: 75px;
     text-align: center;
-    margin-bottom: 10px;
     font-family: "Noto Serif JP", serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -223,3 +198,12 @@ body{
 .lang_btn {
     margin: 3px
 }
+
+.settings-footer {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #ddd;
+    text-align: center;
+    line-height: 1.4;
+  }
+
