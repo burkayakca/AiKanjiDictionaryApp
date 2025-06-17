@@ -1,6 +1,7 @@
 import {useState,React} from "react";
 import Store from "../Store";
 import VerifyApiKey from "../api/VerifyApiKey";
+import SettingsFooter from "./footers/settingsFooter.jsx"
 
 
 function Settings() {
@@ -58,11 +59,7 @@ function Settings() {
                     {language === "en" ? "Cancel" : "İptal"}
                 </button>
             </div>
-            <div className="footer">
-                <p >{language === "en"
-                    ? <>Your API Key will be stored at your Local Storage.</>
-                    : <>API Anahtarınız tarayıcınızın hafızasına <br /> (Local Storage)  kaydedilecektir.</>}</p>
-            </div>
+            <SettingsFooter/>
         </div>
     )
 }

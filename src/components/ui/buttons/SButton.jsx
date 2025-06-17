@@ -5,9 +5,9 @@ function SButton(props) {
     <svg
         width={32}
         height={32}
-        onClick={props.onClick}
+        onClick={!props.disabled ? props.onClick : undefined}
         viewBox="0 0 54 54"
-        className={props.className}
+        className={props.disabled ? 'disabled-svg' + props.className : props.className}
 		fill="currentColor"
         >
         <path d="M51.22,21h-5.052c-0.812,0-1.481-0.447-1.792-1.197s-0.153-1.54,0.42-2.114l3.572-3.571

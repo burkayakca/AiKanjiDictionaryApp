@@ -7,6 +7,7 @@ import Entry from './ui/Entry.jsx';
 import XButton from "./ui/buttons/XButton.jsx";
 import SButton from "./ui/buttons/SButton.jsx";
 import Settings from "./ui/Settings.jsx"
+import MainFooter from "./ui/footers/mainFooter.jsx";
 
 function App() {
   const [jsonfile, setJsonfile] = useState(null);
@@ -39,8 +40,9 @@ function App() {
     );
   }
 
-  function resetKanji() {
+  function reset() {
     setJsonfile("")
+    setInputKanji("")
   }
 
   const handleFetchKanji = async () => {
@@ -77,10 +79,11 @@ function App() {
           {jsonfile
             ?
             <XButton
-              onClick={resetKanji}
+              onClick={reset}
               className={"close-svg np"}
             />
-            : <div className="input-container">
+            : 
+            <div className="input-container">
               <h2>{language === "en" ? "AI Kanji Dictionary" : "YZ Kanji Sözlüğü"}</h2>
               <input
                 className="form-control-md"
@@ -104,18 +107,17 @@ function App() {
                   className="btn btn-danger btn-sm text-nowrap lang_btn"
                   type="submit"
                   onClick={toggleLanguage}
-                  disabled={isLoading || jsonfile}
+                  disabled={isLoading}
                 >
                   {language === "en" ? "Türkçe" : "English"}
                 </button>
                 <SButton
                   className={"settings-svg"}
                   onClick={toggleSettings}
+                  disabled={isLoading}
                 />
               </div>
-              <div className="footer">
-                <p>© 2025 <a href="https://www.github.com/burkayakca/AiKanjiDictionaryApp">burkayakca</a>  / Licensed under MIT <br />Stroke Animations: © 2018 <a href="https://www.hanziwriter.org">Hanzi Writer</a></p>
-              </div>
+              <MainFooter/>
             </div>}
           {jsonfile &&
             <dl className="dictionary">
