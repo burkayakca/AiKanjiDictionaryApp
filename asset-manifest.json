@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/AiKanjiDictionaryApp/static/css/main.7d3ac2d7.css",
-    "main.js": "/AiKanjiDictionaryApp/static/js/main.6d4cef75.js",
+    "main.css": "/AiKanjiDictionaryApp/static/css/main.e3008a41.css",
+    "main.js": "/AiKanjiDictionaryApp/static/js/main.9043f2ef.js",
     "index.html": "/AiKanjiDictionaryApp/index.html",
-    "main.7d3ac2d7.css.map": "/AiKanjiDictionaryApp/static/css/main.7d3ac2d7.css.map",
-    "main.6d4cef75.js.map": "/AiKanjiDictionaryApp/static/js/main.6d4cef75.js.map"
+    "main.e3008a41.css.map": "/AiKanjiDictionaryApp/static/css/main.e3008a41.css.map",
+    "main.9043f2ef.js.map": "/AiKanjiDictionaryApp/static/js/main.9043f2ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d3ac2d7.css",
-    "static/js/main.6d4cef75.js"
+    "static/css/main.e3008a41.css",
+    "static/js/main.9043f2ef.js"
   ]
 }
