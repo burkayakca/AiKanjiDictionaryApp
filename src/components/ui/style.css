@@ -18,7 +18,7 @@
 /* Light Mode */
 @media (prefers-color-scheme: light) {
 
-    .settings-footer p, a, .input-p, .kanji-container, .kanji-container table, h2, .kanji-p {
+    .footer p, a, .input-p, .kanji-container, .kanji-container table, h2, .kanji-p {
         color: var(--light-text);
     }
 
@@ -44,7 +44,7 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
 
-    .settings-footer, a, .input-p, .kanji-container, .kanji-container table, h2,.kanji-p {
+    .footer, a, .input-p, .kanji-container, .kanji-container table, h2,.kanji-p {
         color: var(--dark-text);
     }
 
@@ -199,7 +199,7 @@ body{
     margin: 3px
 }
 
-.settings-footer {
+.footer {
     margin-top: 0.5rem;
     font-size: 0.85rem;
     color: #ddd;

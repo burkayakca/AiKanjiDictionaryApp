@@ -1,18 +1,26 @@
 import React, { useState, Text } from "react";
-import Entry from './ui/Entry.jsx';
+import settingsScreenStore from "./stores/SettingsScreenStore.js"
+
 import getKanji from "./api/getKanji.jsx";
-import XButton from "./ui/XButton.jsx";
-import SButton from "./ui/SButton.jsx";
-import VerifyApiKey from "./api/VerifyApiKey.jsx";
+
+import Entry from './ui/Entry.jsx';
+import XButton from "./ui/buttons/XButton.jsx";
+import SButton from "./ui/buttons/SButton.jsx";
+import Settings from "./ui/Settings.jsx"
 
 function App() {
   const [jsonfile, setJsonfile] = useState(null);
   const [inputKanji, setInputKanji] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [language, setLanguage] = useState("en")
-  const [isSettingsOpen, setSettings] = useState(false)
+  const [language, setLanguage] = useState("en");
+  const [isSettingsOpen,toggleSettings] = [
+    settingsScreenStore((state) => state.settingsScreenOpen), 
+    settingsScreenStore((state) => state.toggleSettingsScreen)
+  ];
   const [apikeyInput, setApikeyInput] = useState("")
+
+  
 
   function languageSetting() {
     if (language == "en") {
@@ -36,28 +44,6 @@ function App() {
         language={language}
       />
     );
-  }
-
-  function SettingsOpen() {
-    setSettings(true)
-  }
-
-  function SettingsClose() {
-    setSettings(false)
-  }
-
-  async function saveApikey() {
-    const apiVerification = await VerifyApiKey(apikeyInput)
-    console.log(apiVerification)
-    if (apiVerification == true) {
-      localStorage.setItem('GEMINI_API_KEY', apikeyInput)
-      alert(language === "en" ? "API Key verified and saved to Local Storage." : "API Anahtarı Tarayıcı hafızasına kaydedildi.")
-      setApikeyInput("")
-      SettingsClose()
-    } else {
-      alert(language == "en" ? "API Key could not be verified. Please re-enter your API Key or try again later" : "API Anahtarı doğrulanamadı. Lütfen Anahtarınızı tekrar giriniz yada daha sonra tekrar deneyiniz. ")
-      setApikeyInput("")
-    }
   }
 
   function resetKanji() {
@@ -92,42 +78,8 @@ function App() {
 
   return (
     <div className="main">
-      {isSettingsOpen ? (
-        <div className="input-container settings">
-          <h2>{language == "en" ? "Settings" : "Ayarlar"}</h2>
-          <input
-            className="form-control-md"
-            type="password"
-            value={apikeyInput}
-            onChange={(e) => setApikeyInput(e.target.value)}
-            placeholder={language === "en" ? "Enter Gemini API Key" : "Gemini API Anahtarı giriniz"}
-          />
-          <div>
-            <button
-              className="btn btn-primary btn-sm text-nowrap"
-              type="submit"
-              onClick={saveApikey}
-              disabled={isLoading}
-            > {language === "en" ?
-              (isLoading ? "Verifying Key..." : "Verify & Save")
-              : (isLoading ? "Doğrulanıyor" : "Doğrula & Kaydet")
-              }
-            </button>
-            <button
-              className="btn btn-danger btn-sm text-nowrap lang_btn"
-              type="submit"
-              onClick={SettingsClose}
-            >
-              {language === "en" ? "Cancel" : "İptal"}
-            </button>
-          </div>
-          <div className="input-p">
-            <p >{language === "en"
-              ? <>Your API Key will be stored <br /> at your Local Storage.</>
-              : <>API Anahtarınız tarayıcınızın hafızasına <br /> (Local Storage)  kaydedilecektir.</>}</p>
-          </div>
-        </div>
-      ) : (
+      {isSettingsOpen ? (<Settings language={language}/>)
+      : (
         <>
           {jsonfile
             ?
@@ -165,10 +117,10 @@ function App() {
                 </button>
                 <SButton
                   className={"settings-svg"}
-                  onClick={SettingsOpen}
+                  onClick={toggleSettings}
                 />
               </div>
-              <div className="settings-footer">
+              <div className="footer">
                 <p>© 2025 <a href="https://www.github.com/burkayakca/AiKanjiDictionaryApp">burkayakca</a>  / Licensed under MIT <br />Stroke Animations: © 2018 <a href="https://www.hanziwriter.org">Hanzi Writer</a></p>
               </div>
             </div>}
