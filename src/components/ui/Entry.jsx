@@ -1,8 +1,11 @@
 import React, {useState,useEffect} from 'react';
 import './style.css'; 
 import HanziWriter from 'hanzi-writer';
+import Store from "../Store"
 
-function Entry({ kanji, components, meaning, kunyomi, onyomi, examples, strokeNumber,language}) {
+function Entry({ kanji, components, meaning, kunyomi, onyomi, examples, strokeNumber}) {
+
+    const language = Store((state) => state.language)
     const [isSupported, setIsSupported] = useState(true);
 
     if (!kanji) {

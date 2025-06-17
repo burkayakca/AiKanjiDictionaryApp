@@ -1,14 +1,16 @@
 import {useState,React} from "react";
-import settingsScreenStore from "../stores/SettingsScreenStore";
+import Store from "../Store";
 import VerifyApiKey from "../api/VerifyApiKey";
 
 
-function Settings({language}) {
+function Settings() {
     
     const [apikeyInput, setApikeyInput] = useState("")
     const [isLoading, setIsLoading] = useState(false);
-    const isSettingsOpen = settingsScreenStore((state) => state.settingsScreenOpen)
-    const toggleSettings = settingsScreenStore((state) => state.toggleSettingsScreen)
+    const toggleSettings = Store((state) => state.toggleSettingsScreen)
+    const language = Store((state) => state.language)
+
+    
     
     async function saveApikey() {
         setIsLoading(true)

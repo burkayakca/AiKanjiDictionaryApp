@@ -1,5 +1,5 @@
 import React, { useState, Text } from "react";
-import settingsScreenStore from "./stores/SettingsScreenStore.js"
+import Store from "./Store.js"
 
 import getKanji from "./api/getKanji.jsx";
 
@@ -13,22 +13,16 @@ function App() {
   const [inputKanji, setInputKanji] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [language, setLanguage] = useState("en");
-  const [isSettingsOpen,toggleSettings] = [
-    settingsScreenStore((state) => state.settingsScreenOpen), 
-    settingsScreenStore((state) => state.toggleSettingsScreen)
+
+  const [language, toggleLanguage] = [
+    Store((state) => state.language),
+    Store((state) => state.toggleLanguage)
   ];
-  const [apikeyInput, setApikeyInput] = useState("")
 
-  
-
-  function languageSetting() {
-    if (language == "en") {
-      setLanguage("tr")
-    } else {
-      setLanguage("en")
-    }
-  }
+  const [isSettingsOpen,toggleSettings] = [
+    Store((state) => state.settingsScreenOpen), 
+    Store((state) => state.toggleSettingsScreen)
+  ];
 
   function createEntry(jsonfile, index) {
     return (
@@ -41,7 +35,6 @@ function App() {
         components={jsonfile.components}
         examples={jsonfile.examples}
         strokeNumber={jsonfile.strokeNumber}
-        language={language}
       />
     );
   }
@@ -57,7 +50,7 @@ function App() {
       setIsLoading(false);
     } else {
       try {
-        const data = await getKanji(inputKanji, language);
+        const data = await getKanji(inputKanji,language);
         console.log('Fetched data:', data);
         if (data.isValid) {
           setJsonfile(data);
@@ -78,7 +71,7 @@ function App() {
 
   return (
     <div className="main">
-      {isSettingsOpen ? (<Settings language={language}/>)
+      {isSettingsOpen ? (<Settings/>)
       : (
         <>
           {jsonfile
@@ -110,7 +103,7 @@ function App() {
                 <button
                   className="btn btn-danger btn-sm text-nowrap lang_btn"
                   type="submit"
-                  onClick={languageSetting}
+                  onClick={toggleLanguage}
                   disabled={isLoading || jsonfile}
                 >
                   {language === "en" ? "Türkçe" : "English"}
