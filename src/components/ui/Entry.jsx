@@ -17,6 +17,9 @@ function Entry({ kanji, components, meaning, kunyomi, onyomi, examples, strokeNu
         if (!kanji) return;
       
         setIsSupported(true);
+
+        const container = document.getElementById("kanjiRender-div");
+        if (container) container.innerHTML = "";
       
         var writer = HanziWriter.create("kanjiRender-div", kanji, {
           width: 120,

@@ -1,7 +1,7 @@
 import {useState,React} from "react";
-import Store from "../Store";
-import VerifyApiKey from "../api/VerifyApiKey";
-import SettingsFooter from "./footers/settingsFooter.jsx"
+import Store from "../../Store.js";
+import VerifyApiKey from "../../api/VerifyApiKey.jsx";
+import SettingsFooter from "../footers/settingsFooter.jsx"
 
 
 function Settings() {
@@ -11,8 +11,6 @@ function Settings() {
     const toggleSettings = Store((state) => state.toggleSettingsScreen)
     const language = Store((state) => state.language)
 
-    
-    
     async function saveApikey() {
         setIsLoading(true)
         const apiVerification = await VerifyApiKey(apikeyInput)

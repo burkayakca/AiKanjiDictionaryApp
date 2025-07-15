@@ -4,6 +4,7 @@ import { create } from "zustand";
 const Store = create((set) => ({
     settingsScreenOpen: false,
     language: 'en',
+    
 
     toggleLanguage: () =>
         set((state) => ({
