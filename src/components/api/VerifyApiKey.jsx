@@ -5,7 +5,7 @@ function VerifyApiKey(apikey) {
     const GEMINI_API_KEY = apikey
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash",
+        model: "gemini-2.5-flash",
         systemInstruction: "Return isKeyValid True to verify API Key is valid",
     });
 

@@ -16,7 +16,7 @@ function getKanji(character,language) {
     const GEMINI_API_KEY = localStorage.getItem("GEMINI_API_KEY")
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash",
+        model: "gemini-2.5-flash",
         systemInstruction: systemInstruction,
     });
 
