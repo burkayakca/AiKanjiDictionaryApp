@@ -6,4 +6,5 @@ function MainFooter () {
     )
 }
 
+
 export default MainFooter;
