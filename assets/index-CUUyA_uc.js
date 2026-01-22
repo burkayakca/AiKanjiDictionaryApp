@@ -280,7 +280,7 @@ Error generating stack: `+n.message+`
 		C23,2.35,23.35,2,23.78,2h6.439C30.65,2,31,2.35,31,2.78v5.052c0,1.624,0.932,3.019,2.432,3.64
 		c1.502,0.622,3.146,0.294,4.294-0.854l3.571-3.571c0.306-0.305,0.801-0.305,1.104,0l4.553,4.553c0.305,0.305,0.305,0.8,0,1.104
 		l-3.572,3.571c-1.148,1.148-1.476,2.794-0.854,4.294c0.621,1.5,2.016,2.432,3.64,2.432h5.052C51.65,23,52,23.35,52,23.78V30.22z`}),k.jsx("path",{d:`M27,18c-4.963,0-9,4.037-9,9s4.037,9,9,9s9-4.037,9-9S31.963,18,27,18z M27,34c-3.859,0-7-3.141-7-7s3.141-7,7-7
-		s7,3.141,7,7S30.859,34,27,34z`})]})}function ny(){return k.jsx("div",{className:"footer",children:k.jsxs("p",{children:["© 2025 ",k.jsx("a",{href:"https://www.github.com/burkayakca/AiKanjiDictionaryApp",children:" burkayakca"}),"  / Licensed under MIT ",k.jsx("br",{}),"Stroke Animations: © 2018 ",k.jsx("a",{href:"https://www.hanziwriter.org",children:"Hanzi Writer"})," "]})})}const lu={en:{systemInstruction:`
+		s7,3.141,7,7S30.859,34,27,34z`})]})}function ny(){return k.jsx("div",{className:"footer",children:k.jsxs("p",{children:["© ",new Date().getFullYear()," ",k.jsx("a",{href:"https://www.github.com/burkayakca/AiKanjiDictionaryApp",children:" burkayakca"}),"  / Licensed under MIT ",k.jsx("br",{}),"Stroke Animations: © 2018 ",k.jsx("a",{href:"https://www.hanziwriter.org",children:"Hanzi Writer"})," "]})})}const lu={en:{systemInstruction:`
         You are a helpful assistant that provides detailed information about Japanese kanji. 
         When a user asks about a kanji, respond with the following structured data in JSON format:
         If A User queries something that doesnt have any kanji or example correspondence, directly return a false isValid and abort the process Do not speculate, improvise
